@@ -1,0 +1,6 @@
+.navbar-section.ui.menu .item {
+    color: #fff;
+}
+.navbar-section.ui.menu .item:hover {
+    background-color: #d6d6d6!important;
+}
