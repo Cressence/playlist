@@ -30,7 +30,7 @@ export default function Navbar() {
                     onClick={handleItemClick}
                 />
                 <Menu.Menu position='right'>
-                    <Menu.Item>
+                    <Menu.Item className="search-section">
                         <Search icon='search' placeholder='Search...' />
                     </Menu.Item>
                 </Menu.Menu>
