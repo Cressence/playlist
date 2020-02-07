@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Provider } from 'react-redux';
+
+import store from './store/store';
 
 import Main from './layout/main/main';
 
@@ -9,9 +12,11 @@ import './component/navbar/navbar.css';
 
 function App() {
   return (
-    <Router>
-      <Route path="/" component={Main} />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Route path="/" component={Main} />
+      </Router>
+    </Provider>
   );
 }
 
