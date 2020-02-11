@@ -1,7 +1,9 @@
 import React, { useState, useLayoutEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import { Grid } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
+import { getGenre } from './../../actions/editorial';
 import Navbar from './../../component/navbar/navbar';
 
 function Main() {
@@ -42,6 +44,7 @@ function Main() {
     }
     useLayoutEffect(() => {
         updatePageWidth();
+        getGenre();
         window.addEventListener('resize', updatePageWidth);
         updatePageWidth();
         return () => window.removeEventListener('resize', updatePageWidth);
@@ -162,4 +165,11 @@ function Main() {
     )
 }
 
-export default Main;
+const mapStateToProps = (state) => ({
+  genreList: state.genre
+});
+const mapDispatchToProps = {
+    getGenre
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

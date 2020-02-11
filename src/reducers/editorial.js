@@ -1,18 +1,18 @@
-import { EDITORIAL, API_FAIL } from './../constants/constants';
+import { GENRE, API_FAIL } from './../constants/constants';
 
 const initialState = {
-    locals: null,
+    genres: null,
     appError: null
 };
 
-const editorial = (state = initialState, action) => {
+const genre = (state = initialState, action) => {
     switch (action.type) {
-        case EDITORIAL: {
+        case GENRE: {
             if (action.data.data) {
                 if (action.data.status === 200) {
                     return {
                         ...state,
-                        locals: action.data.data
+                        genres: action.data.data
                     }
                 } else {
                     return {
@@ -33,4 +33,4 @@ const editorial = (state = initialState, action) => {
             return state;
     }
 };
-export default editorial;
+export default genre;
