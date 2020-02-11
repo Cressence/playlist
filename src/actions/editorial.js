@@ -24,3 +24,32 @@ export const getLocalization = (language) => (dispatch) => {
             data: resp
         }))
 };
+
+// export const getEditorial = (language) => (dispatch) => {
+//     if (language === 'en') {
+//         return axios.all([getDashboardLocalization(language), getVerificationLocalization(language)])
+//             .then(axios.spread((dashboard, verification) => dispatch({
+//                 type: LOCALS,
+//                 data: dashboard,
+//                 dataVerification: verification
+//             })))
+//             .catch(axios.spread((dashboard, verification) => dispatch({
+//                 type: API_FAIL,
+//                 data: dashboard,
+//                 dataVerification: verification
+//             })))
+//     } else {
+//         return axios.all([getDashboardLocalization(language), getVerificationLocalization('en')])
+//         .then(axios.spread((dashboard, verification) => dispatch({
+//             type: LOCALS,
+//             data: dashboard,
+//             dataVerification: verification
+//         })))
+//         .catch(axios.spread((dashboard, verification) => dispatch({
+//             type: API_FAIL,
+//             data: dashboard,
+//             dataVerification: verification
+//         })))
+//     }
+
+// };
