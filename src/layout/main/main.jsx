@@ -1,24 +1,29 @@
 import React, { useState, useLayoutEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import { Grid } from 'semantic-ui-react';
-import { connect } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { getGenre } from './../../actions/editorial';
 import Navbar from './../../component/navbar/navbar';
 
 function Main() {
+    // const { genreList } = useSelector(state => ({
+    //     genreList: state.genre.genres
+    // }));
+    // const dispatch = useDispatch();
     const [width, setWidth] = useState(0);
     const background = require("./../../assets/img/background.jpg");
     let columnSize;
-     if(width < 768 && width > 432){
-         columnSize = 2;
-     } else if(width < 1024 && width >= 768) {
-         columnSize = 3;
-     } else if(width  <= 432) {
-         columnSize = 1;
-     } else {
-         columnSize = 5;
-     }
+    if (width < 768 && width > 432) {
+        columnSize = 2;
+    } else if (width < 1024 && width >= 768) {
+        columnSize = 3;
+    } else if (width <= 432) {
+        columnSize = 1;
+    } else {
+        columnSize = 5;
+    }
 
     const responsive = {
         superLargeDesktop: {
@@ -44,7 +49,7 @@ function Main() {
     }
     useLayoutEffect(() => {
         updatePageWidth();
-        getGenre();
+        // dispatch(getGenre());
         window.addEventListener('resize', updatePageWidth);
         updatePageWidth();
         return () => window.removeEventListener('resize', updatePageWidth);
@@ -85,72 +90,72 @@ function Main() {
                     <div className="songs-grid">
                         <Grid columns={columnSize}>
                             <Grid.Column>
-                                <div className="single-song device-blocking" style={{backgroundImage: `url(${background})`}}>
+                                <div className="single-song device-blocking" style={{ backgroundImage: `url(${background})` }}>
                                     <div className="song-overlay">
-                                       <h3 className="white song-title">Song title here</h3> 
+                                        <h3 className="white song-title">Song title here</h3>
                                     </div>
                                 </div>
                                 <p className="white song-artist-name"><strong>Artist name</strong></p>
                                 <p className="white small-text">Release date here</p>
                             </Grid.Column>
                             <Grid.Column>
-                                <div className="single-song device-blocking" style={{backgroundImage: `url(${background})`}}>
+                                <div className="single-song device-blocking" style={{ backgroundImage: `url(${background})` }}>
                                     <div className="song-overlay">
-                                       <h3 className="white song-title">Song title here</h3> 
+                                        <h3 className="white song-title">Song title here</h3>
                                     </div>
                                 </div>
                                 <p className="white song-artist-name"><strong>Artist name</strong></p>
                                 <p className="white small-text">Release date here</p>
                             </Grid.Column>
                             <Grid.Column>
-                                <div className="single-song device-blocking" style={{backgroundImage: `url(${background})`}}>
+                                <div className="single-song device-blocking" style={{ backgroundImage: `url(${background})` }}>
                                     <div className="song-overlay">
-                                       <h3 className="white song-title">Song title here</h3> 
+                                        <h3 className="white song-title">Song title here</h3>
                                     </div>
                                 </div>
                                 <p className="white song-artist-name"><strong>Artist name</strong></p>
                                 <p className="white small-text">Release date here</p>
                             </Grid.Column>
                             <Grid.Column>
-                                <div className="single-song device-blocking" style={{backgroundImage: `url(${background})`}}>
+                                <div className="single-song device-blocking" style={{ backgroundImage: `url(${background})` }}>
                                     <div className="song-overlay">
-                                       <h3 className="white song-title">Song title here</h3> 
+                                        <h3 className="white song-title">Song title here</h3>
                                     </div>
                                 </div>
                                 <p className="white song-artist-name"><strong>Artist name</strong></p>
                                 <p className="white small-text">Release date here</p>
                             </Grid.Column>
                             <Grid.Column>
-                                <div className="single-song device-blocking" style={{backgroundImage: `url(${background})`}}>
+                                <div className="single-song device-blocking" style={{ backgroundImage: `url(${background})` }}>
                                     <div className="song-overlay">
-                                       <h3 className="white song-title">Song title here</h3> 
+                                        <h3 className="white song-title">Song title here</h3>
                                     </div>
                                 </div>
                                 <p className="white song-artist-name"><strong>Artist name</strong></p>
                                 <p className="white small-text">Release date here</p>
                             </Grid.Column>
                             <Grid.Column>
-                                <div className="single-song device-blocking" style={{backgroundImage: `url(${background})`}}>
+                                <div className="single-song device-blocking" style={{ backgroundImage: `url(${background})` }}>
                                     <div className="song-overlay">
-                                       <h3 className="white song-title">Song title here</h3> 
+                                        <h3 className="white song-title">Song title here</h3>
                                     </div>
                                 </div>
                                 <p className="white song-artist-name"><strong>Artist name</strong></p>
                                 <p className="white small-text">Release date here</p>
                             </Grid.Column>
                             <Grid.Column>
-                                <div className="single-song device-blocking" style={{backgroundImage: `url(${background})`}}>
+                                <div className="single-song device-blocking" style={{ backgroundImage: `url(${background})` }}>
                                     <div className="song-overlay">
-                                       <h3 className="white song-title">Song title here</h3> 
+                                        <h3 className="white song-title">Song title here</h3>
                                     </div>
                                 </div>
                                 <p className="white song-artist-name"><strong>Artist name</strong></p>
                                 <p className="white small-text">Release date here</p>
                             </Grid.Column>
                             <Grid.Column>
-                                <div className="single-song device-blocking" style={{backgroundImage: `url(${background})`}}>
+                                <div className="single-song device-blocking" style={{ backgroundImage: `url(${background})` }}>
                                     <div className="song-overlay">
-                                       <h3 className="white song-title">Song title here</h3> 
+                                        <h3 className="white song-title">Song title here</h3>
                                     </div>
                                 </div>
                                 <p className="white song-artist-name"><strong>Artist name</strong></p>
@@ -165,11 +170,4 @@ function Main() {
     )
 }
 
-const mapStateToProps = (state) => ({
-  genreList: state.genre
-});
-const mapDispatchToProps = {
-    getGenre
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default Main;
