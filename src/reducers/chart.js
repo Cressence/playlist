@@ -2,6 +2,10 @@ import { CHART_ALBUMS, API_FAIL } from './../constants/constants';
 
 const initialState = {
     chartAlbums: null,
+    chartTracks: null,
+    chartPodcast: null,
+    chartPlaylist: null,
+    chartArtists: null,
     appError: null
 };
 
@@ -11,7 +15,11 @@ const chart = (state = initialState, action) => {
             if (action.data) {
                 return {
                     ...state,
-                    genres: action.data
+                    chartAlbums: action.data.albums,
+                    chartPlaylist: action.data.playlists,
+                    chartPodcast: action.data.podcasts,
+                    chartTracks: action.data.tracks,
+                    chartArtists: action.data.artists,
                 }
             }
             return;

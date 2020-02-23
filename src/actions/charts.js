@@ -11,6 +11,7 @@ function getChartAlbumsPromise() {
                 resolve(data.json());
             })
                 .then(finalData => {
+                    console.log(finalData)
                     return finalData
                 });
         })
