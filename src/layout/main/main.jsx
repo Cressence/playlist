@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
 import Carousel from 'react-multi-carousel';
-// import { Grid } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { getGenre } from './../../actions/editorial';
@@ -69,177 +69,181 @@ function Main() {
     }, [dispatch]);
 
     return (
-        <div className="main-body">
+        <div className={genreList === null || chartPlaylistList === null? "body-container-loader": "main-body"}>
             <Navbar />
 
-            <div className="body-container">
+            {
+                genreList === null || chartAlbumsList === null ?
+                        <Loader active />
+                    :
+                    <div className="body-container">
 
-                <div>
-                    <h3 className="white sub-title">Top Artists</h3>
-                    <p className="grey small-text">Explore top artists</p>
-                    <div className="genres">
-                        {
-                            chartArtistsList !== null ?
-                                <Carousel responsive={responsive} arrows={true}>
-                                    {
-                                        chartArtistsList.data.map((item, index) => {
-                                            return (
-                                                <div key={index}>
-                                                    <div className="single-artist" style={{ backgroundImage: `url(${item.picture_big})` }}>
-                                                        <div className="artist-overlay ">
+                        <div>
+                            <h3 className="white sub-title">Top Artists</h3>
+                            <p className="grey small-text">Explore top artists</p>
+                            <div className="genres">
+                                {
+                                    chartArtistsList !== null ?
+                                        <Carousel responsive={responsive} arrows={true}>
+                                            {
+                                                chartArtistsList.data.map((item, index) => {
+                                                    return (
+                                                        <div key={index}>
+                                                            <div className="single-artist" style={{ backgroundImage: `url(${item.picture_big})` }}>
+                                                                <div className="artist-overlay ">
+                                                                </div>
+                                                            </div>
+                                                            <p className="white song-artist-name"><strong>{item.name}</strong></p>
                                                         </div>
-                                                    </div>
-                                                    <p className="white song-artist-name"><strong>{item.name}</strong></p>
-                                                </div>
 
-                                            )
-                                        })
-                                    }
-                                </Carousel>
-                                : null
-                        }
-                    </div>
-                </div>
+                                                    )
+                                                })
+                                            }
+                                        </Carousel>
+                                        : null
+                                }
+                            </div>
+                        </div>
 
-                <div className="songs">
-                    <h3 className="white sub-title">Albums</h3>
-                    <p className="grey small-text">Explore top albums</p>
-                    <div className="genres">
-                        {
-                            chartAlbumsList !== null ?
-                                <Carousel responsive={responsive} arrows={true}>
-                                    {
-                                        chartAlbumsList.data.map((item, index) => {
-                                            return (
-                                                <div key={index}>
-                                                    <div className="single-genre" style={{ backgroundImage: `url(${item.cover_big})` }}>
-                                                        <div className="album-overlay">
-                                                            <h3 className="white genre-title">{item.name}</h3>
+                        <div className="songs">
+                            <h3 className="white sub-title">Albums</h3>
+                            <p className="grey small-text">Explore top albums</p>
+                            <div className="genres">
+                                {
+                                    chartAlbumsList !== null ?
+                                        <Carousel responsive={responsive} arrows={true}>
+                                            {
+                                                chartAlbumsList.data.map((item, index) => {
+                                                    return (
+                                                        <div key={index}>
+                                                            <div className="single-genre" style={{ backgroundImage: `url(${item.cover_big})` }}>
+                                                                <div className="album-overlay">
+                                                                    <h3 className="white genre-title">{item.name}</h3>
+                                                                </div>
+                                                            </div>
+                                                            <p className="white song-artist-name"><strong>{item.artist.name}</strong></p>
                                                         </div>
-                                                    </div>
-                                                    <p className="white song-artist-name"><strong>{item.artist.name}</strong></p>
-                                                </div>
 
-                                            )
-                                        })
-                                    }
-                                </Carousel>
-                                : null
-                        }
-                    </div>
-                </div>
+                                                    )
+                                                })
+                                            }
+                                        </Carousel>
+                                        : null
+                                }
+                            </div>
+                        </div>
 
-                <div className="songs">
-                    <h3 className="white sub-title">Genre</h3>
-                    <p className="grey small-text">Explore genres</p>
-                    <div className="genres">
-                        {
-                            genreList !== null ?
-                                <Carousel responsive={responsive} arrows={true}>
-                                    {
-                                        genreList.data.map((item, index) => {
-                                            return (
-                                                <div key={index} className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
-                                                    <div className="genre-overlay">
-                                                        <h3 className="white genre-title">{item.name}</h3>
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </Carousel>
-                                : null
-                        }
-                    </div>
-                </div>
-
-                <div className="songs">
-                    <h3 className="white sub-title">Tracks</h3>
-                    <p className="grey small-text">Explore by albums</p>
-                    <div className="genres">
-                        {
-                            chartTracksList !== null ?
-                                <Carousel responsive={responsive} arrows={true}>
-                                    {
-                                        chartTracksList.data.map((item, index) => {
-                                            return (
-                                                <div key={index}>
-                                                    <div className="single-genre" style={{ backgroundImage: `url(${item.album.cover_big})` }}>
-                                                        <div className="track-overlay">
-                                                            <h3 className="white genre-title">{item.title}</h3>
+                        <div className="songs">
+                            <h3 className="white sub-title">Genre</h3>
+                            <p className="grey small-text">Explore genres</p>
+                            <div className="genres">
+                                {
+                                    genreList !== null ?
+                                        <Carousel responsive={responsive} arrows={true}>
+                                            {
+                                                genreList.data.map((item, index) => {
+                                                    return (
+                                                        <div key={index} className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
+                                                            <div className="genre-overlay">
+                                                                <h3 className="white genre-title">{item.name}</h3>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <p className="white song-artist-name"><strong>{item.artist.name}</strong></p>
-                                                    <p className="white song-album-name small-text">{item.album.title}</p>
-                                                </div>
+                                                    )
+                                                })
+                                            }
+                                        </Carousel>
+                                        : null
+                                }
+                            </div>
+                        </div>
 
-                                            )
-                                        })
-                                    }
-                                </Carousel>
-                                : null
-                        }
-                    </div>
-                </div>
-
-                <div className="songs">
-                    <h3 className="white sub-title">Playlist</h3>
-                    <p className="grey small-text">Explore playlists</p>
-                    <div className="genres">
-                        {
-                            chartPlaylistList !== null ?
-                                <Carousel responsive={responsive} arrows={true}>
-                                    {
-                                        chartPlaylistList.data.map((item, index) => {
-                                            return (
-                                                <div key={index}>
-                                                    <div className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
-                                                        <div className="playlist-overlay">
+                        <div className="songs">
+                            <h3 className="white sub-title">Tracks</h3>
+                            <p className="grey small-text">Explore by albums</p>
+                            <div className="genres">
+                                {
+                                    chartTracksList !== null ?
+                                        <Carousel responsive={responsive} arrows={true}>
+                                            {
+                                                chartTracksList.data.map((item, index) => {
+                                                    return (
+                                                        <div key={index}>
+                                                            <div className="single-genre" style={{ backgroundImage: `url(${item.album.cover_big})` }}>
+                                                                <div className="track-overlay">
+                                                                    <h3 className="white genre-title">{item.title}</h3>
+                                                                </div>
+                                                            </div>
+                                                            <p className="white song-artist-name"><strong>{item.artist.name}</strong></p>
+                                                            <p className="white song-album-name small-text">{item.album.title}</p>
                                                         </div>
-                                                    </div>
-                                                    <p className="white song-artist-name"><strong>{item.title}</strong></p>
-                                                    <p className="white song-album-name small-text">{item.nb_tracks} tracks</p>
-                                                </div>
 
-                                            )
-                                        })
-                                    }
-                                </Carousel>
-                                : null
-                        }
-                    </div>
-                </div>
+                                                    )
+                                                })
+                                            }
+                                        </Carousel>
+                                        : null
+                                }
+                            </div>
+                        </div>
 
-                <div className="songs">
-                    <h3 className="white sub-title">Podcast</h3>
-                    <p className="grey small-text">Explore podcast</p>
-                    <div className="genres">
-                        {
-                            chartPodcastList !== null ?
-                                <Carousel responsive={responsive} arrows={true}>
-                                    {
-                                        chartPodcastList.data.map((item, index) => {
-                                            return (
-                                                <div key={index}>
-                                                    <div className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
-                                                        <div className="podcast-overlay">
-                                                            <h3 className="white genre-title">{item.title}</h3>
+                        <div className="songs">
+                            <h3 className="white sub-title">Playlist</h3>
+                            <p className="grey small-text">Explore playlists</p>
+                            <div className="genres">
+                                {
+                                    chartPlaylistList !== null ?
+                                        <Carousel responsive={responsive} arrows={true}>
+                                            {
+                                                chartPlaylistList.data.map((item, index) => {
+                                                    return (
+                                                        <div key={index}>
+                                                            <div className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
+                                                                <div className="playlist-overlay">
+                                                                </div>
+                                                            </div>
+                                                            <p className="white song-artist-name"><strong>{item.title}</strong></p>
+                                                            <p className="white song-album-name small-text">{item.nb_tracks} tracks</p>
                                                         </div>
-                                                    </div>
-                                                    <p className="white song-artist-name"><strong>{item.fans} fans</strong></p>
-                                                    <p className="white song-album-name small-text three-lines-text">{item.description}</p>
-                                                </div>
 
-                                            )
-                                        })
-                                    }
-                                </Carousel>
-                                : null
-                        }
-                    </div>
-                </div>
+                                                    )
+                                                })
+                                            }
+                                        </Carousel>
+                                        : null
+                                }
+                            </div>
+                        </div>
 
-                {/* <div className="songs">
+                        <div className="songs">
+                            <h3 className="white sub-title">Podcast</h3>
+                            <p className="grey small-text">Explore podcast</p>
+                            <div className="genres">
+                                {
+                                    chartPodcastList !== null ?
+                                        <Carousel responsive={responsive} arrows={true}>
+                                            {
+                                                chartPodcastList.data.map((item, index) => {
+                                                    return (
+                                                        <div key={index}>
+                                                            <div className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
+                                                                <div className="podcast-overlay">
+                                                                    <h3 className="white genre-title">{item.title}</h3>
+                                                                </div>
+                                                            </div>
+                                                            <p className="white song-artist-name"><strong>{item.fans} fans</strong></p>
+                                                            <p className="white song-album-name small-text three-lines-text">{item.description}</p>
+                                                        </div>
+
+                                                    )
+                                                })
+                                            }
+                                        </Carousel>
+                                        : null
+                                }
+                            </div>
+                        </div>
+
+                        {/* <div className="songs">
                     <h3 className="white sub-title">Songs</h3>
                     <p className="grey small-text">Browse all music</p>
                     <div className="songs-grid">
@@ -320,7 +324,10 @@ function Main() {
                     </div>
                 </div> */}
 
-            </div>
+                    </div>
+            }
+
+
 
         </div>
     )
