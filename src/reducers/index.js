@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
-import editorial from './editorial';
+import genre from './editorial';
+import chart from './chart';
 
 
 export default combineReducers({
-    editorial
+    genre,
+    chart
 })

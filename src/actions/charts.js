@@ -1,11 +1,11 @@
 import {
-    GENRE, API_FAIL
+    CHART_ALBUMS, API_FAIL
 } from './../constants/constants';
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-function getGenrePromise() {
-    return fetch(proxyurl + `https://api.deezer.com/genre`)
+function getChartAlbumsPromise() {
+    return fetch(proxyurl + `https://api.deezer.com/chart/albums`)
         .then(data => {
             return new Promise(resolve => {
                 resolve(data.json());
@@ -19,10 +19,10 @@ function getGenrePromise() {
         });
 }
 
-export const getGenre = () => (dispatch) => {
-    return getGenrePromise()
+export const getChartAlbums = () => (dispatch) => {
+    return getChartAlbumsPromise()
         .then(resp => dispatch({
-            type: GENRE,
+            type: CHART_ALBUMS,
             data: resp
         }))
         .catch(resp => dispatch({

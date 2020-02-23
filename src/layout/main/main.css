@@ -32,10 +32,14 @@
     height: 150px;
     width: 90%;
     margin: auto;
-    background: linear-gradient(4deg, rgba(120, 2, 255, 0.63), rgba(255, 0, 149, 0.3)), url("./../../assets/img/background.jpg");
     border-radius: 5px;
     background-size: cover;
     position: relative;
+}
+
+.genre-overlay {
+    background: linear-gradient(4deg, rgba(120, 2, 255, 0.63), rgba(255, 0, 149, 0.3));
+    height: 100%;
 }
 
 .single-song {

@@ -1,13 +1,13 @@
-import { GENRE, API_FAIL } from './../constants/constants';
+import { CHART_ALBUMS, API_FAIL } from './../constants/constants';
 
 const initialState = {
-    genres: null,
+    chartAlbums: null,
     appError: null
 };
 
-const genre = (state = initialState, action) => {
+const chart = (state = initialState, action) => {
     switch (action.type) {
-        case GENRE: {
+        case CHART_ALBUMS: {
             if (action.data) {
                 return {
                     ...state,
@@ -26,4 +26,4 @@ const genre = (state = initialState, action) => {
             return state;
     }
 };
-export default genre;
+export default chart;
