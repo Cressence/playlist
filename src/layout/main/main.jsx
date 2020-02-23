@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import { Loader } from 'semantic-ui-react';
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,7 @@ function Main() {
     }));
     const dispatch = useDispatch();
 
-    const [width, setWidth] = useState(0);
+    // const [width, setWidth] = useState(0);
     // const background = require("./../../assets/img/background.jpg");
     // let columnSize;
     // if (width < 768 && width > 432) {
@@ -56,16 +56,16 @@ function Main() {
             slidesToSlide: 1,
         },
     };
-    const updatePageWidth = () => {
-        setWidth(window.innerWidth);
-    }
+    // const updatePageWidth = () => {
+    //     setWidth(window.innerWidth);
+    // }
     useLayoutEffect(() => {
-        updatePageWidth();
+        // updatePageWidth();
         dispatch(getGenre());
         dispatch(getChartAlbums());
-        window.addEventListener('resize', updatePageWidth);
-        updatePageWidth();
-        return () => window.removeEventListener('resize', updatePageWidth);
+        // window.addEventListener('resize', updatePageWidth);
+        // updatePageWidth();
+        // return () => window.removeEventListener('resize', updatePageWidth);
     }, [dispatch]);
 
     return (
