@@ -1,0 +1,1 @@
+export const DEEZER_ENDPOINT = "https://api.deezer.com";

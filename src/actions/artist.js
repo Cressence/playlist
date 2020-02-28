@@ -1,17 +1,18 @@
 import {
-    GENRE, API_FAIL
+    ARTIST_ALBUMS, API_FAIL
 } from './../constants/constants';
 import { DEEZER_ENDPOINT } from './config';
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-function getGenrePromise() {
-    return fetch(proxyurl + `${DEEZER_ENDPOINT}/genre`)
+function getArtistAlbumsPromise(artistId) {
+    return fetch(proxyurl + `${DEEZER_ENDPOINT}/artist/${artistId}/albums`)
         .then(data => {
             return new Promise(resolve => {
                 resolve(data.json());
             })
                 .then(finalData => {
+                    console.log(finalData)
                     return finalData
                 });
         })
@@ -20,10 +21,10 @@ function getGenrePromise() {
         });
 }
 
-export const getGenre = () => (dispatch) => {
-    return getGenrePromise()
+export const getArtistAlbums = (artistId) => (dispatch) => {
+    return getArtistAlbumsPromise(artistId)
         .then(resp => dispatch({
-            type: GENRE,
+            type: ARTIST_ALBUMS,
             data: resp
         }))
         .catch(resp => dispatch({

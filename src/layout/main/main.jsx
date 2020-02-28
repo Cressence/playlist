@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getGenre } from './../../actions/editorial';
 import { getChartAlbums } from './../../actions/charts';
+import { getArtistAlbums } from './../../actions/artist';
 import Navbar from './../../component/navbar/navbar';
+import ArtistAlbum from './../../component/artistAlbum/artistAlbum';
 
 function Main() {
     const {
@@ -59,6 +61,9 @@ function Main() {
     // const updatePageWidth = () => {
     //     setWidth(window.innerWidth);
     // }
+    const artistAlbums = (artistId) => {
+        dispatch(getArtistAlbums(artistId));
+    }
     useLayoutEffect(() => {
         // updatePageWidth();
         dispatch(getGenre());
@@ -67,14 +72,13 @@ function Main() {
         // updatePageWidth();
         // return () => window.removeEventListener('resize', updatePageWidth);
     }, [dispatch]);
-
     return (
-        <div className={genreList === null || chartPlaylistList === null? "body-container-loader": "main-body"}>
+        <div className={genreList === null || chartPlaylistList === null ? "body-container-loader" : "main-body"}>
             <Navbar />
 
             {
                 genreList === null || chartAlbumsList === null ?
-                        <Loader active />
+                    <Loader active />
                     :
                     <div className="body-container">
 
@@ -88,14 +92,18 @@ function Main() {
                                             {
                                                 chartArtistsList.data.map((item, index) => {
                                                     return (
-                                                        <div key={index}>
-                                                            <div className="single-artist" style={{ backgroundImage: `url(${item.picture_big})` }}>
-                                                                <div className="artist-overlay ">
+                                                        <ArtistAlbum
+                                                            key={index}
+                                                            viewData={
+                                                                <div>
+                                                                    <div onClick={() => artistAlbums(item.id)} className="single-artist" style={{ backgroundImage: `url(${item.picture_big})` }}>
+                                                                        <div className="artist-overlay ">
+                                                                        </div>
+                                                                    </div>
+                                                                    <p className="white song-artist-name"><strong>{item.name}</strong></p>
                                                                 </div>
-                                                            </div>
-                                                            <p className="white song-artist-name"><strong>{item.name}</strong></p>
-                                                        </div>
-
+                                                            }
+                                                        />
                                                     )
                                                 })
                                             }

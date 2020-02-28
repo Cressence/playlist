@@ -1,0 +1,11 @@
+.single-artist-album {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px
+}
+
+.single-artist-album .description {
+    margin-left: 25px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
