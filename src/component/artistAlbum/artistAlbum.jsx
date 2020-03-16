@@ -12,7 +12,6 @@ function ArtistAlbum(props) {
     } = useSelector(state => ({
         artistAlbumsList: state.artist.artistAlbums
     }));
-    console.log(artistAlbumsList)
     return (
         <Modal trigger={props.viewData} size="small">
             <Modal.Header>Albums ( {artistAlbumsList !== null ? artistAlbumsList.length : null} )</Modal.Header>

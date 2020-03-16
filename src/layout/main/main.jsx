@@ -1,39 +1,44 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
-import { Loader } from 'semantic-ui-react';
+import { Loader, Transition, Icon, Grid } from 'semantic-ui-react';
 import { useDispatch, useSelector } from "react-redux";
+import AudioPlayer from 'react-h5-audio-player';
 
 import { getGenre } from './../../actions/editorial';
 import { getChartAlbums } from './../../actions/charts';
 import { getArtistAlbums } from './../../actions/artist';
+import { getAlbumTracks } from './../../actions/albums';
 import Navbar from './../../component/navbar/navbar';
 import ArtistAlbum from './../../component/artistAlbum/artistAlbum';
 
 function Main() {
     const {
-        genreList, chartAlbumsList, chartArtistsList, chartTracksList, chartPlaylistList, chartPodcastList
+        genreList, chartAlbumsList, chartArtistsList, chartTracksList, chartPlaylistList, chartPodcastList, albumTracksList
     } = useSelector(state => ({
         genreList: state.genre.genres,
         chartAlbumsList: state.chart.chartAlbums,
         chartArtistsList: state.chart.chartArtists,
         chartTracksList: state.chart.chartTracks,
         chartPlaylistList: state.chart.chartPlaylist,
-        chartPodcastList: state.chart.chartPodcast
+        chartPodcastList: state.chart.chartPodcast,
+        albumTracksList: state.album.albumTracks,
     }));
     const dispatch = useDispatch();
 
-    // const [width, setWidth] = useState(0);
-    // const background = require("./../../assets/img/background.jpg");
-    // let columnSize;
-    // if (width < 768 && width > 432) {
-    //     columnSize = 2;
-    // } else if (width < 1024 && width >= 768) {
-    //     columnSize = 3;
-    // } else if (width <= 432) {
-    //     columnSize = 1;
-    // } else {
-    //     columnSize = 5;
-    // }
+    const [visible, setVisible] = useState(false);
+    const [albumTitle, setAlbumtitle] = useState('');
+    const [width, setWidth] = useState(0);
+
+    let columnSize;
+    if (width < 768 && width > 432) {
+        columnSize = 1;
+    } else if (width < 1024 && width >= 768) {
+        columnSize = 2;
+    } else if (width <= 432) {
+        columnSize = 1;
+    } else {
+        columnSize = 2;
+    }
 
     const responsive = {
         superLargeDesktop: {
@@ -58,20 +63,26 @@ function Main() {
             slidesToSlide: 1,
         },
     };
-    // const updatePageWidth = () => {
-    //     setWidth(window.innerWidth);
-    // }
+    const updatePageWidth = () => {
+        setWidth(window.innerWidth);
+    }
     const artistAlbums = (artistId) => {
         dispatch(getArtistAlbums(artistId));
     }
+    const albumTraks = (albumInfo) => {
+        setVisible(true);
+        setAlbumtitle(albumInfo.title);
+        dispatch(getAlbumTracks(albumInfo.id));
+    }
     useLayoutEffect(() => {
-        // updatePageWidth();
+        updatePageWidth();
         dispatch(getGenre());
         dispatch(getChartAlbums());
-        // window.addEventListener('resize', updatePageWidth);
-        // updatePageWidth();
-        // return () => window.removeEventListener('resize', updatePageWidth);
+        window.addEventListener('resize', updatePageWidth);
+        updatePageWidth();
+        return () => window.removeEventListener('resize', updatePageWidth);
     }, [dispatch]);
+    console.log(albumTracksList);
     return (
         <div className={genreList === null || chartPlaylistList === null ? "body-container-loader" : "main-body"}>
             <Navbar />
@@ -123,13 +134,12 @@ function Main() {
                                             {
                                                 chartAlbumsList.data.map((item, index) => {
                                                     return (
-                                                        <div key={index}>
+                                                        <div key={index} onClick={() => albumTraks(item)} className="single-album-container">
                                                             <div className="single-genre" style={{ backgroundImage: `url(${item.cover_big})` }}>
                                                                 <div className="album-overlay">
-                                                                    <h3 className="white genre-title">{item.name}</h3>
                                                                 </div>
                                                             </div>
-                                                            <p className="white song-artist-name"><strong>{item.artist.name}</strong></p>
+                                                            <p className="white song-artist-name"><strong>{item.title}</strong></p>
                                                         </div>
 
                                                     )
@@ -138,6 +148,42 @@ function Main() {
                                         </Carousel>
                                         : null
                                 }
+                                <Transition visible={visible} animation='slide down' duration={700}>
+                                    <div className="albums-tracks-section">
+                                        <div className="vertical-alignment-between">
+                                            <h4 className="album-title">{albumTitle}</h4>
+                                            <Icon link name='close' onClick={() => setVisible(false)} />
+                                        </div>
+
+                                        {
+                                            albumTracksList === null ?
+                                                <Loader active inverted />
+                                                :
+                                                <Grid columns={columnSize}>
+                                                    {
+                                                        albumTracksList.map((item, index) => {
+                                                            return (
+                                                                <Grid.Column key={index}>
+                                                                    <div>
+                                                                        <p>{item.title}</p>
+                                                                        <a href={item.link} target="_blank" rel="noopener noreferrer">View on Deezer</a>
+                                                                        {/* <AudioPlayer
+                                                                            autoPlay={false}
+                                                                            src={item.preview}
+                                                                            onPlay={e => console.log("onPlay")}
+                                                                            showLoopControl={false}
+                                                                        /> */}
+                                                                        <audio />
+                                                                    </div>
+                                                                </Grid.Column>
+                                                            )
+                                                        })
+                                                    }
+                                                </Grid>
+                                        }
+
+                                    </div>
+                                </Transition>
                             </div>
                         </div>
 

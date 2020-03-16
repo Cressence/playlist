@@ -7,6 +7,7 @@ import ViewAlbum from './layout/viewAlbum/viewAlbum';
 // import styles
 import './layout/main/main.css';
 import './component/navbar/navbar.css';
+import 'react-h5-audio-player/lib/styles.css';
 
 function App() {
   return (
