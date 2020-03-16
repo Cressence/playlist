@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import { Loader, Transition, Icon, Grid } from 'semantic-ui-react';
 import { useDispatch, useSelector } from "react-redux";
-import AudioPlayer from 'react-h5-audio-player';
+// import AudioPlayer from 'react-h5-audio-player';
 
 import { getGenre } from './../../actions/editorial';
 import { getChartAlbums } from './../../actions/charts';
@@ -82,7 +82,7 @@ function Main() {
         updatePageWidth();
         return () => window.removeEventListener('resize', updatePageWidth);
     }, [dispatch]);
-    console.log(albumTracksList);
+    // console.log(albumTracksList);
     return (
         <div className={genreList === null || chartPlaylistList === null ? "body-container-loader" : "main-body"}>
             <Navbar />
