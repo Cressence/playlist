@@ -2,7 +2,6 @@ import React, { useLayoutEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import { Loader, Transition, Icon, Grid } from 'semantic-ui-react';
 import { useDispatch, useSelector } from "react-redux";
-// import AudioPlayer from 'react-h5-audio-player';
 
 import { getGenre } from './../../actions/editorial';
 import { getChartAlbums } from './../../actions/charts';
@@ -10,6 +9,7 @@ import { getArtistAlbums } from './../../actions/artist';
 import { getAlbumTracks } from './../../actions/albums';
 import Navbar from './../../component/navbar/navbar';
 import ArtistAlbum from './../../component/artistAlbum/artistAlbum';
+import Track from './../../component/track/track';
 
 function Main() {
     const {
@@ -31,13 +31,13 @@ function Main() {
 
     let columnSize;
     if (width < 768 && width > 432) {
-        columnSize = 1;
+        columnSize = 3;
     } else if (width < 1024 && width >= 768) {
-        columnSize = 2;
+        columnSize = 3;
     } else if (width <= 432) {
-        columnSize = 1;
-    } else {
         columnSize = 2;
+    } else {
+        columnSize = 4;
     }
 
     const responsive = {
@@ -151,7 +151,7 @@ function Main() {
                                 <Transition visible={visible} animation='slide down' duration={700}>
                                     <div className="albums-tracks-section">
                                         <div className="vertical-alignment-between">
-                                            <h4 className="album-title">{albumTitle}</h4>
+                                            <h3 className="album-title">{albumTitle}</h3>
                                             <Icon link name='close' onClick={() => setVisible(false)} />
                                         </div>
 
@@ -165,15 +165,18 @@ function Main() {
                                                             return (
                                                                 <Grid.Column key={index}>
                                                                     <div>
-                                                                        <p>{item.title}</p>
-                                                                        <a href={item.link} target="_blank" rel="noopener noreferrer">View on Deezer</a>
-                                                                        {/* <AudioPlayer
-                                                                            autoPlay={false}
-                                                                            src={item.preview}
-                                                                            onPlay={e => console.log("onPlay")}
-                                                                            showLoopControl={false}
-                                                                        /> */}
-                                                                        <audio />
+                                                                        <p><strong>{item.title}</strong></p>
+                                                                        <div>
+                                                                            <a href={item.link} target="_blank" rel="noopener noreferrer" className="play_link">View on Deezer</a>
+                                                                            <Track
+                                                                                trigger={
+                                                                                    <Icon className="play-icon" name='play' color="violet" />
+                                                                                }
+                                                                                title={'test'}
+                                                                                music={'test'}
+                                                                            />
+                                                                        </div>
+
                                                                     </div>
                                                                 </Grid.Column>
                                                             )
@@ -380,8 +383,6 @@ function Main() {
 
                     </div>
             }
-
-
 
         </div>
     )
