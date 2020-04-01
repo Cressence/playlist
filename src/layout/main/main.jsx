@@ -155,35 +155,32 @@ function Main() {
                                             <Icon link name='close' onClick={() => setVisible(false)} />
                                         </div>
 
-                                        {
-                                            albumTracksList === null ?
-                                                <Loader active inverted />
-                                                :
-                                                <Grid columns={columnSize}>
-                                                    {
-                                                        albumTracksList.map((item, index) => {
-                                                            return (
-                                                                <Grid.Column key={index}>
+                                        <Grid columns={columnSize}>
+                                            {
+                                                albumTracksList === null ?
+                                                    <Loader active inverted />
+                                                    :
+                                                    albumTracksList.map((item, index) => {
+                                                        return (
+                                                            <Grid.Column key={index}>
+                                                                <div>
+                                                                    <p><strong>{item.title}</strong></p>
                                                                     <div>
-                                                                        <p><strong>{item.title}</strong></p>
-                                                                        <div>
-                                                                            <a href={item.link} target="_blank" rel="noopener noreferrer" className="play_link">View on Deezer</a>
-                                                                            <Track
-                                                                                trigger={
-                                                                                    <Icon className="play-icon" name='play' color="violet" />
-                                                                                }
-                                                                                title={'test'}
-                                                                                music={'test'}
-                                                                            />
-                                                                        </div>
-
+                                                                        <a href={item.link} target="_blank" rel="noopener noreferrer" className="play_link">View on Deezer</a>
+                                                                        <Track
+                                                                            trigger={
+                                                                                <Icon className="play-icon" name='play' color="violet" />
+                                                                            }
+                                                                            music={item}
+                                                                        />
                                                                     </div>
-                                                                </Grid.Column>
-                                                            )
-                                                        })
-                                                    }
-                                                </Grid>
-                                        }
+
+                                                                </div>
+                                                            </Grid.Column>
+                                                        )
+                                                    })
+                                            }
+                                        </Grid>
 
                                     </div>
                                 </Transition>
