@@ -35,7 +35,7 @@ function Main() {
     } else if (width < 1024 && width >= 768) {
         columnSize = 3;
     } else if (width <= 432) {
-        columnSize = 2;
+        columnSize = 1;
     } else {
         columnSize = 4;
     }
