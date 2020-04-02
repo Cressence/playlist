@@ -221,15 +221,22 @@ function Main() {
                                             {
                                                 chartTracksList.data.map((item, index) => {
                                                     return (
-                                                        <div key={index}>
-                                                            <div className="single-genre" style={{ backgroundImage: `url(${item.album.cover_big})` }}>
-                                                                <div className="track-overlay">
-                                                                    <h3 className="white genre-title">{item.title}</h3>
+                                                        <Track
+                                                            key={index}
+                                                            trigger={
+                                                                <div className="track-item">
+                                                                    <div className="single-genre" style={{ backgroundImage: `url(${item.album.cover_big})` }}>
+                                                                        <div className="track-overlay">
+                                                                            <h3 className="white genre-title">{item.title}</h3>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p className="white song-artist-name"><strong>{item.artist.name}</strong></p>
+                                                                    <p className="white song-album-name small-text">{item.album.title}</p>
                                                                 </div>
-                                                            </div>
-                                                            <p className="white song-artist-name"><strong>{item.artist.name}</strong></p>
-                                                            <p className="white song-album-name small-text">{item.album.title}</p>
-                                                        </div>
+                                                            }
+                                                            music={item}
+                                                        />
+
 
                                                     )
                                                 })
