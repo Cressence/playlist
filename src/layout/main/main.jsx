@@ -2,6 +2,7 @@ import React, { useLayoutEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import { Loader, Transition, Icon, Grid } from 'semantic-ui-react';
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 
 import { getGenre } from './../../actions/editorial';
 import { getChartAlbums } from './../../actions/charts';
@@ -82,7 +83,7 @@ function Main() {
         updatePageWidth();
         return () => window.removeEventListener('resize', updatePageWidth);
     }, [dispatch]);
-    // console.log(albumTracksList);
+    console.log(chartPlaylistList);
     return (
         <div className={genreList === null || chartPlaylistList === null ? "body-container-loader" : "main-body"}>
             <Navbar />
@@ -255,16 +256,21 @@ function Main() {
                                     chartPlaylistList !== null ?
                                         <Carousel responsive={responsive} arrows={true}>
                                             {
-                                                chartPlaylistList.data.map((item, index) => {
+                                                chartPlaylistList.data.map((item) => {
                                                     return (
-                                                        <div key={index}>
+                                                        <Link
+                                                            key={item.id}
+                                                            to={{
+                                                                pathname: "/playlist",
+                                                                state: { playlist: item }
+                                                            }}>
                                                             <div className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
                                                                 <div className="playlist-overlay">
                                                                 </div>
                                                             </div>
                                                             <p className="white song-artist-name"><strong>{item.title}</strong></p>
                                                             <p className="white song-album-name small-text">{item.nb_tracks} tracks</p>
-                                                        </div>
+                                                        </Link>
 
                                                     )
                                                 })
