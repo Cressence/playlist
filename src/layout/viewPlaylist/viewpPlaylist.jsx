@@ -3,7 +3,6 @@ import { Grid } from 'semantic-ui-react';
 import Navbar from './../../component/navbar/navbar';
 
 function ViewPlaylist(props) {
-    // const playlistInfo = props.location.state.playlist;
     const [width, setWidth] = useState(0);
 
     let columnSize = (width <= 432) ? 1 : 2;
@@ -13,7 +12,7 @@ function ViewPlaylist(props) {
     }
     useLayoutEffect(() => {
         // redirect to home page when site opens from playlist page
-        if (props.location.state === undefined) props.history.push('/');
+        const playlistInfo = (props.location.state !== undefined) ? props.location.state.playlist: props.history.push('/');
         updatePageWidth();
         window.addEventListener('resize', updatePageWidth);
         updatePageWidth();
