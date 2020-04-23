@@ -1,40 +1,119 @@
 import React, { useState } from 'react';
-import { Menu, Search } from 'semantic-ui-react';
+import { Menu, Search, Responsive, Sidebar, Icon, Header } from 'semantic-ui-react';
 
 export default function Navbar() {
     const [activeItem, setActiveItem] = useState('');
+    const [visible, setVisible] = useState(false);
 
     const handleItemClick = (e, { name }) => setActiveItem(name);
+    const handleToggle = () => setVisible(!visible);
+    const handlePusher = () => { if (visible) setVisible(false); };
+
+    const NavBarMobile = ({
+        leftItems,
+        onPusherClick,
+        onToggle,
+        visible,
+        children
+    }) => (
+            <Sidebar.Pushable>
+                <Sidebar
+                    as={Menu}
+                    animation="overlay"
+                    inverted
+                    items={leftItems}
+                    vertical
+                    visible={visible}
+                    onHide={() => setVisible(false)}
+                >
+                    <Menu className="navbar-section" stackable secondary>
+                        <Menu.Item
+                            name='PLAYLIST'
+                            active={activeItem === 'logo'}
+                            onClick={handleItemClick}
+                        />
+                        <Menu.Item
+                            name='Genre'
+                            active={activeItem === 'home'}
+                            onClick={handleItemClick}
+                        />
+                        <Menu.Item
+                            name='Artist'
+                            active={activeItem === 'messages'}
+                            onClick={handleItemClick}
+                        />
+                        <Menu.Item
+                            name='Albums'
+                            active={activeItem === 'friends'}
+                            onClick={handleItemClick}
+                        />
+                        <Menu.Menu position='right'>
+                            <Menu.Item className="search-section">
+                                <Search icon='search' placeholder='Search...' />
+                            </Menu.Item>
+                        </Menu.Menu>
+                    </Menu>
+                </Sidebar>
+                <Sidebar.Pusher
+                    dimmed={visible}
+                    onClick={onPusherClick}
+                    style={{ minHeight: "100vh" }}
+
+                >
+                    <Menu className="navbar-section" secondary>
+                        <Menu.Item onClick={onToggle}>
+                            <Icon name="sidebar" />
+                        </Menu.Item>
+                    </Menu>
+                    {children}
+                </Sidebar.Pusher>
+            </Sidebar.Pushable>
+        );
+
+    const NavbarDesktop = () => (
+        <Menu className="navbar-section" stackable secondary>
+            <Menu.Item
+                name='PLAYLIST'
+                active={activeItem === 'logo'}
+                onClick={handleItemClick}
+            />
+            <Menu.Item
+                name='Genre'
+                active={activeItem === 'home'}
+                onClick={handleItemClick}
+            />
+            <Menu.Item
+                name='Artist'
+                active={activeItem === 'messages'}
+                onClick={handleItemClick}
+            />
+            <Menu.Item
+                name='Albums'
+                active={activeItem === 'friends'}
+                onClick={handleItemClick}
+            />
+            <Menu.Menu position='right'>
+                <Menu.Item className="search-section">
+                    <Search icon='search' placeholder='Search...' />
+                </Menu.Item>
+            </Menu.Menu>
+        </Menu>
+    );
 
     return (
         <div>
-            <Menu className="navbar-section" stackable secondary>
-                <Menu.Item
-                    name='PLAYLIST'
-                    active={activeItem === 'logo'}
-                    onClick={handleItemClick}
-                />
-                <Menu.Item
-                    name='Genre'
-                    active={activeItem === 'home'}
-                    onClick={handleItemClick}
-                />
-                <Menu.Item
-                    name='Artist'
-                    active={activeItem === 'messages'}
-                    onClick={handleItemClick}
-                />
-                <Menu.Item
-                    name='Albums'
-                    active={activeItem === 'friends'}
-                    onClick={handleItemClick}
-                />
-                <Menu.Menu position='right'>
-                    <Menu.Item className="search-section">
-                        <Search icon='search' placeholder='Search...' />
-                    </Menu.Item>
-                </Menu.Menu>
-            </Menu>
+            <Responsive {...Responsive.onlyMobile}>
+                <NavBarMobile
+                    onPusherClick={handlePusher}
+                    onToggle={handleToggle}
+                    visible={visible}
+                >
+
+                </NavBarMobile>
+            </Responsive>
+            <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+                <NavbarDesktop />
+            </Responsive>
         </div>
     )
 }
