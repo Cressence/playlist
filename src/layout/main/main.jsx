@@ -8,7 +8,6 @@ import { getGenre } from './../../actions/editorial';
 import { getChartAlbums } from './../../actions/charts';
 import { getArtistAlbums } from './../../actions/artist';
 import { getAlbumTracks } from './../../actions/albums';
-import Navbar from './../../component/navbar/navbar';
 import ArtistAlbum from './../../component/artistAlbum/artistAlbum';
 import Track from './../../component/track/track';
 
@@ -86,7 +85,6 @@ function Main() {
     console.log(chartPlaylistList);
     return (
         <div className={genreList === null || chartPlaylistList === null ? "body-container-loader" : "main-body"}>
-            <Navbar />
 
             {
                 genreList === null || chartAlbumsList === null ?

@@ -1,6 +1,5 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
-import Navbar from './../../component/navbar/navbar';
 
 function ViewPlaylist(props) {
     // redirect to home page when site opens from playlist page 
@@ -21,7 +20,6 @@ function ViewPlaylist(props) {
     console.log(playlistInfo)
     return (
         <div className={"main-body"}>
-            <Navbar />
             <Grid columns={columnSize}>
                 <Grid.Column></Grid.Column>
             </Grid>

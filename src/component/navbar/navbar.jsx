@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, Search, Responsive, Sidebar, Icon, Header } from 'semantic-ui-react';
 
-export default function Navbar() {
+export default function Navbar(props) {
     const [activeItem, setActiveItem] = useState('');
     const [visible, setVisible] = useState(false);
 
@@ -55,6 +55,7 @@ export default function Navbar() {
                     </Menu>
                 </Sidebar>
                 <Sidebar.Pusher
+                    inverted
                     dimmed={visible}
                     onClick={onPusherClick}
                     style={{ minHeight: "100vh" }}
@@ -108,11 +109,12 @@ export default function Navbar() {
                     onToggle={handleToggle}
                     visible={visible}
                 >
-
+                    {props.children}
                 </NavBarMobile>
             </Responsive>
             <Responsive minWidth={Responsive.onlyTablet.minWidth}>
                 <NavbarDesktop />
+                {props.children}
             </Responsive>
         </div>
     )
