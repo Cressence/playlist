@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Search, Responsive, Sidebar, Icon, Header } from 'semantic-ui-react';
+import { Menu, Search, Responsive, Sidebar, Icon } from 'semantic-ui-react';
 
 export default function Navbar(props) {
     const [activeItem, setActiveItem] = useState('');
