@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Main from './layout/main/main';
-import ViewPlaylist from './layout/viewPlaylist/viewpPlaylist';
+import ViewPlaylist from './layout/viewPlaylist/viewPlaylist';
 import Navbar from './component/navbar/navbar';
 
 // import styles

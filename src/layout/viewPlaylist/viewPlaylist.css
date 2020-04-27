@@ -1,0 +1,9 @@
+.main-body.playlist {
+    height: 100vh;
+}
+
+.track-img {
+    height: 600px;
+    width: 100%;
+    object-fit: cover;
+}
