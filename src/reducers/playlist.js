@@ -1,7 +1,8 @@
-import { PLAYLIST, API_FAIL } from './../constants/constants';
+import { PLAYLIST, COMMENTS, API_FAIL } from './../constants/constants';
 
 const initialState = {
     playlistTracks: null,
+    comments: null,
     appError: null
 };
 
@@ -12,6 +13,15 @@ const playlist = (state = initialState, action) => {
                 return {
                     ...state,
                     playlistTracks: action.data.data,
+                }
+            }
+            return;
+        }
+        case COMMENTS: {
+            if (action.data) {
+                return {
+                    ...state,
+                    comments: action.data.data,
                 }
             }
             return;

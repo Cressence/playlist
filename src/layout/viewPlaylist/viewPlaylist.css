@@ -1,9 +1,51 @@
-.main-body.playlist {
-    height: 100vh;
-}
-
 .track-img {
     height: 600px;
     width: 100%;
     object-fit: cover;
+}
+
+.playlist {
+    min-height: 100vh;
+}
+
+div.ui.playlist-setion {
+    width: 80%;
+    margin: auto;
+}
+
+.playlist-title {
+    color: white;
+}
+
+.comment-section {
+    background-color: #fff;
+    padding: 3%;
+}
+
+.user-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+
+.single-comment {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+.comment-text-section {
+    margin-left: 3%;
+    width: 90%;
+    overflow-wrap: break-word;
+}
+
+.comment-top p{
+    margin-bottom: 2px;
+}
+
+.comment-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
