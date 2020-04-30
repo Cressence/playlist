@@ -27,7 +27,7 @@ function ViewPlaylist(props) {
         let date = new Date(number * 1000);
         date = date.toUTCString();
         let period = date.toString().lastIndexOf(':');
-        
+
         return date.substring(0, period);
     }
     useLayoutEffect(() => {
@@ -38,11 +38,11 @@ function ViewPlaylist(props) {
         updatePageWidth();
         return () => window.removeEventListener('resize', updatePageWidth);
     }, [props, playlistInfo, dispatch]);
-    console.log(commentsList);
+    console.log(playlistTracksList);
     return (
         <div className={"main-body playlist"}>
             {
-                playlistTracksList !== null ?
+                (playlistTracksList !== null) && (commentsList !== null) ?
                     <Grid className="playlist-setion">
                         <h1 className="playlist-title">{playlistInfo.title}</h1>
                         <Grid.Row columns={columnSize}>
@@ -54,12 +54,15 @@ function ViewPlaylist(props) {
                                         src={playlistTracksList[0].preview}
                                         onPlay={e => console.log("onPlay")}
                                     />
-                                    <br />
+                                    <div>
+                                        <p className="track-title">{playlistTracksList[0].title}    <span className="track-name"ƒ>{playlistTracksList[0].artist.name}</span></p>
+                                    </div>
                                 </div>
+                                <br />
                                 <div className="comment-section">
                                     {
                                         commentsList.map(comment =>
-                                            <div className="single-comment">
+                                            <div key={comment.id} className="single-comment">
                                                 <img src={comment.author.picture_small} alt="user-pic" className="user-pic" />
                                                 <div className="comment-text-section">
                                                     <div className="comment-top">
@@ -77,8 +80,12 @@ function ViewPlaylist(props) {
                             <Grid.Column className="more-tracks" width={4}>
                                 {
                                     playlistTracksList.map(item => (
-                                        <div key={item.id}>
+                                        <div key={item.id} className="tracks-item">
                                             <img src={item.album.cover_medium} alt="music-icon" />
+                                            <div className="tracks-item-data">
+                                                <p>{item.title}</p>
+                                                <p>{item.artist.name}</p>
+                                            </div>
                                         </div>
                                     ))
                                 }
