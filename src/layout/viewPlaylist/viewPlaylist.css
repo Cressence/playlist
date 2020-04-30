@@ -7,6 +7,8 @@
 .tracks-item {
     height: 100px;
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
 }
 
 .tracks-item img {
@@ -62,10 +64,16 @@ div.ui.playlist-setion {
     justify-content: space-between;
 }
 
-.track-title {
-    color: #fff;
-}
-
 .track-name {
     font-size: 10px;
+}
+
+.selected-trackinfo {
+    background-color: #fff;
+    padding-left: 2%;
+    padding-bottom: 1%;
+}
+
+.tracks-item-data {
+
 }

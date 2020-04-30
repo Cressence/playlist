@@ -50,12 +50,13 @@ function ViewPlaylist(props) {
                                 <div>
                                     <img src={playlistTracksList[0].album.cover_big} alt="music-icon" className="track-img" />
                                     <AudioPlayer
-                                        // autoPlay
+                                        autoPlay
                                         src={playlistTracksList[0].preview}
                                         onPlay={e => console.log("onPlay")}
                                     />
-                                    <div>
-                                        <p className="track-title">{playlistTracksList[0].title}    <span className="track-name"ƒ>{playlistTracksList[0].artist.name}</span></p>
+                                    <div className="selected-trackinfo">
+                                        <p>{playlistTracksList[0].title}  --  <span className="track-name"ƒ>{playlistTracksList[0].artist.name}</span></p>
+                                        <a target="_blank" rel="noopener noreferrer" href={playlistTracksList[0].link}>Listen on Deezer</a>
                                     </div>
                                 </div>
                                 <br />
@@ -83,8 +84,8 @@ function ViewPlaylist(props) {
                                         <div key={item.id} className="tracks-item">
                                             <img src={item.album.cover_medium} alt="music-icon" />
                                             <div className="tracks-item-data">
-                                                <p>{item.title}</p>
-                                                <p>{item.artist.name}</p>
+                                                <h4 className="white">{item.title}</h4>
+                                                <p className="white">{item.artist.name}</p>
                                             </div>
                                         </div>
                                     ))
