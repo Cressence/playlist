@@ -29,7 +29,7 @@ export default function Navbar(props) {
                     <Menu className="navbar-section" stackable secondary>
                         <Menu.Item
                             name='PLAYLIST'
-                            active={activeItem === 'logo'}
+                            active={activeItem === 'title'}
                             onClick={handleItemClick}
                         />
                         <Menu.Item

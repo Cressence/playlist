@@ -81,8 +81,13 @@ div.ui.playlist-setion {
 
 .active-track {
     background-color: #fff;
+    border-bottom: 2px solid #36b305;
 }
 
 .active-track .tracks-item-data p, .active-track .tracks-item-data h4 {
     color: #000;
+}
+
+.tracks-item:hover {
+    border-bottom: 2px solid #36b305;
 }

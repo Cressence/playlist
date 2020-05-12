@@ -51,10 +51,10 @@ function ViewPlaylist(props) {
                                 <div>
                                     <img src={playlistTracksList[0].album.cover_big} alt="music-icon" className="track-img" />
                                     <AudioPlayer
-                                        // autoPlay
+                                        autoPlay
                                         src={playlistTracksList[currentSong].preview}
                                         onEnded={e => {
-                                            if(currentSong === (playlistTracksList.length)) {
+                                            if (currentSong === (playlistTracksList.length)) {
                                                 setCurrentSong(0);
                                             } else {
                                                 setCurrentSong(currentSong + 1);
@@ -62,7 +62,7 @@ function ViewPlaylist(props) {
                                         }}
                                     />
                                     <div className="selected-trackinfo">
-                                        <p>{playlistTracksList[currentSong].title}  --  <span className="track-name"ƒ>{playlistTracksList[currentSong].artist.name}</span></p>
+                                        <p>{playlistTracksList[currentSong].title}  --  <span className="track-name" ƒ>{playlistTracksList[currentSong].artist.name}</span></p>
                                         <a target="_blank" rel="noopener noreferrer" href={playlistTracksList[currentSong].link}>Listen on Deezer</a>
                                     </div>
                                 </div>
@@ -88,7 +88,10 @@ function ViewPlaylist(props) {
                             <Grid.Column className="more-tracks" width={4}>
                                 {
                                     playlistTracksList.map((item, index) => (
-                                        <div key={item.id} className={index === (currentSong)? 'tracks-item active-track' : 'tracks-item'}>
+                                        <div
+                                            key={item.id}
+                                            onClick={() => setCurrentSong(index)}
+                                            className={index === (currentSong) ? 'tracks-item active-track' : 'tracks-item'}>
                                             <img src={item.album.cover_medium} alt="music-icon" />
                                             <div className="tracks-item-data">
                                                 <h4 className="white">{item.title}</h4>
