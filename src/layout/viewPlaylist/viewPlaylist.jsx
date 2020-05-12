@@ -18,6 +18,7 @@ function ViewPlaylist(props) {
     }));
     const dispatch = useDispatch();
     const [width, setWidth] = useState(0);
+    const [currentSong, setCurrentSong] = useState(0);
     let columnSize = (width <= 432) ? 1 : 2;
 
     const updatePageWidth = () => {
@@ -50,13 +51,19 @@ function ViewPlaylist(props) {
                                 <div>
                                     <img src={playlistTracksList[0].album.cover_big} alt="music-icon" className="track-img" />
                                     <AudioPlayer
-                                        autoPlay
-                                        src={playlistTracksList[0].preview}
-                                        onPlay={e => console.log("onPlay")}
+                                        // autoPlay
+                                        src={playlistTracksList[currentSong].preview}
+                                        onEnded={e => {
+                                            if(currentSong === (playlistTracksList.length)) {
+                                                setCurrentSong(0);
+                                            } else {
+                                                setCurrentSong(currentSong + 1);
+                                            }
+                                        }}
                                     />
                                     <div className="selected-trackinfo">
-                                        <p>{playlistTracksList[0].title}  --  <span className="track-name"ƒ>{playlistTracksList[0].artist.name}</span></p>
-                                        <a target="_blank" rel="noopener noreferrer" href={playlistTracksList[0].link}>Listen on Deezer</a>
+                                        <p>{playlistTracksList[currentSong].title}  --  <span className="track-name"ƒ>{playlistTracksList[currentSong].artist.name}</span></p>
+                                        <a target="_blank" rel="noopener noreferrer" href={playlistTracksList[currentSong].link}>Listen on Deezer</a>
                                     </div>
                                 </div>
                                 <br />
@@ -80,8 +87,8 @@ function ViewPlaylist(props) {
                             </Grid.Column>
                             <Grid.Column className="more-tracks" width={4}>
                                 {
-                                    playlistTracksList.map(item => (
-                                        <div key={item.id} className="tracks-item">
+                                    playlistTracksList.map((item, index) => (
+                                        <div key={item.id} className={index === (currentSong)? 'tracks-item active-track' : 'tracks-item'}>
                                             <img src={item.album.cover_medium} alt="music-icon" />
                                             <div className="tracks-item-data">
                                                 <h4 className="white">{item.title}</h4>

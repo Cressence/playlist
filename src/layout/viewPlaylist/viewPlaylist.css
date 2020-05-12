@@ -76,5 +76,13 @@ div.ui.playlist-setion {
 }
 
 .tracks-item-data {
+    padding-top: 3%;
+}
 
+.active-track {
+    background-color: #fff;
+}
+
+.active-track .tracks-item-data p, .active-track .tracks-item-data h4 {
+    color: #000;
 }
