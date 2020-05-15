@@ -82,7 +82,6 @@ function Main() {
         updatePageWidth();
         return () => window.removeEventListener('resize', updatePageWidth);
     }, [dispatch]);
-    console.log(chartPlaylistList);
     return (
         <div className={genreList === null || chartPlaylistList === null ? "body-container-loader" : "main-body"}>
 

@@ -39,7 +39,6 @@ function ViewPlaylist(props) {
         updatePageWidth();
         return () => window.removeEventListener('resize', updatePageWidth);
     }, [props, playlistInfo, dispatch]);
-    console.log(playlistTracksList);
     return (
         <div className={"main-body playlist"}>
             {
