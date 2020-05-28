@@ -84,6 +84,9 @@ function Main() {
   const genreArtist = (genreId) => {
     dispatch(getGenreArtists(genreId));
   };
+  const viewPodcast = (link) => {
+    window.open(link, "_blank");
+  }
   useLayoutEffect(() => {
     updatePageWidth();
     dispatch(getGenre());
@@ -331,9 +334,9 @@ function Main() {
             <div className="genres">
               {chartPodcastList !== null ? (
                 <Carousel responsive={responsive} arrows={true}>
-                  {chartPodcastList.data.map((item, index) => {
+                  {chartPodcastList.map((item, index) => {
                     return (
-                      <div key={index}>
+                      <div key={index} onClick={() => viewPodcast(item.link)}>
                         <div
                           className="single-genre"
                           style={{

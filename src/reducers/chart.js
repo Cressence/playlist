@@ -17,7 +17,7 @@ const chart = (state = initialState, action) => {
                     ...state,
                     chartAlbums: action.data.albums,
                     chartPlaylist: action.data.playlists,
-                    chartPodcast: action.data.podcasts,
+                    chartPodcast: action.data.podcasts.data,
                     chartTracks: action.data.tracks,
                     chartArtists: action.data.artists,
                 }
