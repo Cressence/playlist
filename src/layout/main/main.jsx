@@ -161,7 +161,7 @@ function Main() {
                                         <Grid columns={columnSize}>
                                             {
                                                 albumTracksList === null ?
-                                                    <Loader active inverted />
+                                                    null
                                                     :
                                                     albumTracksList.map((item, index) => {
                                                         return (

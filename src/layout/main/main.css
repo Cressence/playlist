@@ -51,6 +51,10 @@
     position: relative;
 }
 
+.single-genre:hover {
+    cursor: pointer;
+}
+
 .single-artist {
     margin: auto;
     background-size: cover;
@@ -100,6 +104,15 @@
     height: 100%;
     width: 100%;
     border-radius: 5px;
+}
+
+.genre-overlay:hover,
+.album-overlay:hover,
+.artist-overlay:hover,
+.track-overlay:hover,
+.playlist-overlay:hover,
+.podcast-overlay:hover {
+    background: none;
 }
 
 .single-song {
