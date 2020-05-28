@@ -5,4 +5,5 @@ export const ARTIST_ALBUMS = "ARTIST_ALBUMS";
 export const ALBUM_TRACKS = "ALBUM_TRACKS";
 export const PLAYLIST = "PLAYLIST";
 export const COMMENTS = "COMMENTS";
+export const GENRE_ARTISTS = "GENRE_ARTISTS";
 export const API_FAIL = "API_FAIL";

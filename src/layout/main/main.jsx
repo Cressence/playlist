@@ -4,7 +4,7 @@ import { Loader, Transition, Icon, Grid } from 'semantic-ui-react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
-import { getGenre } from './../../actions/editorial';
+import { getGenre, getGenreArtists } from './../../actions/editorial';
 import { getChartAlbums } from './../../actions/charts';
 import { getArtistAlbums } from './../../actions/artist';
 import { getAlbumTracks } from './../../actions/albums';
@@ -13,7 +13,7 @@ import Track from './../../component/track/track';
 
 function Main() {
     const {
-        genreList, chartAlbumsList, chartArtistsList, chartTracksList, chartPlaylistList, chartPodcastList, albumTracksList
+        genreList, chartAlbumsList, chartArtistsList, chartTracksList, chartPlaylistList, chartPodcastList, albumTracksList, genreArtistList
     } = useSelector(state => ({
         genreList: state.genre.genres,
         chartAlbumsList: state.chart.chartAlbums,
@@ -22,6 +22,7 @@ function Main() {
         chartPlaylistList: state.chart.chartPlaylist,
         chartPodcastList: state.chart.chartPodcast,
         albumTracksList: state.album.albumTracks,
+        genreArtistList: state.genre.genreArtists,
     }));
     const dispatch = useDispatch();
 
@@ -74,6 +75,9 @@ function Main() {
         setAlbumtitle(albumInfo.title);
         dispatch(getAlbumTracks(albumInfo.id));
     }
+    const genreArtist = (genreId) => {
+        dispatch(getGenreArtists(genreId));
+    }
     useLayoutEffect(() => {
         updatePageWidth();
         dispatch(getGenre());
@@ -82,6 +86,7 @@ function Main() {
         updatePageWidth();
         return () => window.removeEventListener('resize', updatePageWidth);
     }, [dispatch]);
+    console.log(genreArtistList);
     return (
         <div className={genreList === null || chartPlaylistList === null ? "body-container-loader" : "main-body"}>
 
@@ -195,7 +200,7 @@ function Main() {
                                             {
                                                 genreList.data.map((item, index) => {
                                                     return (
-                                                        <div key={index} className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
+                                                        <div key={index} onClick={() => genreArtist(item.id)} className="single-genre" style={{ backgroundImage: `url(${item.picture_big})` }}>
                                                             <div className="genre-overlay">
                                                                 <h3 className="white genre-title">{item.name}</h3>
                                                             </div>

@@ -1,8 +1,9 @@
-import { GENRE, API_FAIL } from './../constants/constants';
+import { GENRE, GENRE_ARTISTS, API_FAIL } from './../constants/constants';
 
 const initialState = {
     genres: null,
-    appError: null
+    appError: null,
+    genreArtists: null,
 };
 
 const genre = (state = initialState, action) => {
@@ -12,6 +13,15 @@ const genre = (state = initialState, action) => {
                 return {
                     ...state,
                     genres: action.data
+                }
+            }
+            return;
+        }
+        case GENRE_ARTISTS: {
+            if (action.data) {
+                return {
+                    ...state,
+                    genreArtists: action.data.data
                 }
             }
             return;
