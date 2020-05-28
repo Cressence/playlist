@@ -11,6 +11,7 @@ import { getAlbumTracks } from "./../../actions/albums";
 import ArtistAlbum from "./../../component/artistAlbum/artistAlbum";
 import GenreArtist from "./../../component/genreArtist/genreArtist";
 import Track from "./../../component/track/track";
+import Footer from "./../../component/footer/footer";
 
 function Main() {
   const {
@@ -441,6 +442,7 @@ function Main() {
                         </Grid>
                     </div>
                 </div> */}
+                <Footer />
         </div>
       )}
     </div>
