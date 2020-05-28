@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, Search, Responsive, Sidebar, Icon } from 'semantic-ui-react';
 
 export default function Navbar(props) {
-    const [activeItem, setActiveItem] = useState('');
+    const [activeItem, setActiveItem] = useState('smooth');
     const [visible, setVisible] = useState(false);
 
     const handleItemClick = (e, { name }) => setActiveItem(name);
@@ -74,23 +74,23 @@ export default function Navbar(props) {
     const NavbarDesktop = () => (
         <Menu className="navbar-section" stackable secondary>
             <Menu.Item
-                name='PLAYLIST'
-                active={activeItem === 'logo'}
+                name='smooth'
+                active={activeItem === 'smooth'}
                 onClick={handleItemClick}
             />
             <Menu.Item
-                name='Genre'
-                active={activeItem === 'home'}
+                name='genre'
+                active={activeItem === 'genre'}
                 onClick={handleItemClick}
             />
             <Menu.Item
-                name='Artist'
-                active={activeItem === 'messages'}
+                name='artists'
+                active={activeItem === 'artists'}
                 onClick={handleItemClick}
             />
             <Menu.Item
-                name='Albums'
-                active={activeItem === 'friends'}
+                name='albums'
+                active={activeItem === 'albums'}
                 onClick={handleItemClick}
             />
             <Menu.Menu position='right'>
