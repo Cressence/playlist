@@ -79,11 +79,6 @@ export default function Navbar(props) {
                 onClick={handleItemClick}
             />
             <Menu.Item
-                name='genre'
-                active={activeItem === 'genre'}
-                onClick={handleItemClick}
-            />
-            <Menu.Item
                 name='artists'
                 active={activeItem === 'artists'}
                 onClick={handleItemClick}
