@@ -58,7 +58,7 @@ function ViewPlaylist(props) {
               <Grid.Column width={12}>
                 <div>
                   <img
-                    src={playlistTracksList[0].album.cover_big}
+                    src={playlistTracksList[currentSong].album.cover_big}
                     alt="music-icon"
                     className="track-img"
                   />
