@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Menu, Search, Responsive, Sidebar, Icon } from "semantic-ui-react";
-import { useHistory } from "react-router-dom";
+import { createBrowserHistory } from 'history';
 
 export default function Navbar(props) {
-//   const history = useHistory();
+  const history = createBrowserHistory();
   const [activeItem, setActiveItem] = useState("smooth");
   const [visible, setVisible] = useState(false);
 
   const handleItemClick = (e, { name }) => {
     setActiveItem(name);
-    // history.push("/");
-    console.log(useHistory);
+    history.push("/");
+    window.location.reload();
   };
   const handleToggle = () => setVisible(!visible);
   const handlePusher = () => {
